@@ -41,3 +41,61 @@ body {
   margin-left: auto;
   margin-right: 37px;
 }
+
+.meme--container {
+  margin: 36px auto 36px auto;
+  max-width: 80%;
+}
+
+.meme--input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input--top {
+  width: 230px;
+  height: 35px;
+  margin-right: 8px;
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  text-indent: 5px;
+}
+
+.input--bottom {
+  width: 230px;
+  height: 35px;
+  margin-left: 8px;
+  border-radius: 5px;
+  border: 1px solid #d5d4d8;
+  text-indent: 5px;
+}
+
+/* Centering only Placeholder text. Typed text will be left aligned as specified above */
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.meme--button button {
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
+  border: none;
+  border-radius: 5px;
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.meme--image {
+  margin-top: 46px;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
