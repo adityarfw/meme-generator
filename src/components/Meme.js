@@ -6,7 +6,12 @@ const Meme = () => {
   // Use useEffect to get Memes array from https://api.imgflip.com/get_memes
 
   const [memesData, setMemesData] = React.useState([]);
-  const [memesImage, setMemesImage] = React.useState('');
+  //const [memesImage, setMemesImage] = React.useState('');
+  const [formData, setFormData] = React.useState({
+    topText: '',
+    bottomText: '',
+    url: '',
+  });
 
   React.useEffect(() => {
     fetch('https://api.imgflip.com/get_memes')
@@ -21,27 +26,53 @@ const Meme = () => {
   const randomMemeGenerator = () => {
     const randMeme = Math.floor(Math.random() * memesData.length);
     const imgUrl = memesData[randMeme].url;
-    setMemesImage(imgUrl);
+    setFormData((prevState) => ({
+      ...prevState,
+      url: imgUrl,
+    }));
   };
 
   const handleClick = () => {
     randomMemeGenerator();
   };
 
+  const handleChange = (event) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  console.log(formData);
+
   return (
     <main className='meme--container'>
       <div className='meme--input'>
-        <input className='input--top' type='text' placeholder='Top Text' />
+        <input
+          className='input--top'
+          type='text'
+          placeholder='Top Text'
+          name='topText'
+          value={formData.topText}
+          onChange={handleChange}
+        />
         <input
           className='input--bottom'
           type='text'
           placeholder='Bottom Text'
+          name='bottomText'
+          value={formData.bottomText}
+          onChange={handleChange}
         />
       </div>
       <div className='meme--button'>
         <button onClick={handleClick}>Get a new meme image ⚠️</button>
       </div>
-      <img className='meme--image' src={memesImage} />
+      <div className='meme--image--container'>
+        <img className='meme--image' src={formData.url} />
+        <h2 className='top--text'>{formData.topText}</h2>
+        <h2 className='bottom--text'>{formData.bottomText}</h2>
+      </div>
     </main>
   );
 };
