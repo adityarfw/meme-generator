@@ -6,6 +6,7 @@ const Meme = () => {
   // Use useEffect to get Memes array from https://api.imgflip.com/get_memes
 
   const [memesData, setMemesData] = React.useState([]);
+  const [memesImage, setMemesImage] = React.useState('');
 
   React.useEffect(() => {
     fetch('https://api.imgflip.com/get_memes')
@@ -20,7 +21,7 @@ const Meme = () => {
   const randomMemeGenerator = () => {
     const randMeme = Math.floor(Math.random() * memesData.length);
     const imgUrl = memesData[randMeme].url;
-    console.log(imgUrl);
+    setMemesImage(imgUrl);
   };
 
   const handleClick = () => {
@@ -28,7 +29,7 @@ const Meme = () => {
   };
 
   return (
-    <div className='meme--container'>
+    <main className='meme--container'>
       <div className='meme--input'>
         <input className='input--top' type='text' placeholder='Top Text' />
         <input
@@ -40,8 +41,8 @@ const Meme = () => {
       <div className='meme--button'>
         <button onClick={handleClick}>Get a new meme image ⚠️</button>
       </div>
-      <img className='meme--image' src={memeimg} />
-    </div>
+      <img className='meme--image' src={memesImage} />
+    </main>
   );
 };
 
